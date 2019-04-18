@@ -11,14 +11,17 @@
           <div class="card">
           <h3 class="text-center">{{book.book_title}}</h3>
           <hr>
-          
-        <a target="_blank" href="{{book.live_site}}" class="btn btn-outline-info btn-md">Visit Site</a>
+          <button>
+            <a target="_blank" href="{{book.live_site}}" class="btn btn-outline-info btn-md">Visit Site</a>
+          </button>
+        
       <div class="col-md-2"></div>
     {% autoescape on%}
     <p class="text-center">{{book.book_description | safe}}</p>
     {% endautoescape%}
     
-    <p class="text-center">By <span>{{book.user.username}}</span></p>
+    <p class="text-center">Posted By <span>{{book.user.username}}</span></p>
+    <p class="text-center"><span>{{book.book_category}} Category</span></p>
     </div>
     </div>
     </div>

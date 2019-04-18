@@ -15,17 +15,18 @@
   
   
     {% for book in books %}
-    <div class="col-md-6">
-    <div class="card-header text">
-    <h3 class="text-center" >{{book.book_title}}</h3>
-    </div>
+    <div class="col-md-4">
+    <!-- <div class="card-header text"> -->
+    <h4>{{book.book_title}}</h4><hr>
+    <!-- </div> -->
     <div class="card-body">
-    <img id="bookImage" src="{{book.book_image.url}}" alt="" width="60%" height="70%" style="border-radius:50px"><br><br>
+    <img id="bookImage" src="{{book.book_image.url}}" alt="" width="60%" height="70%"><br><br>
     <button type="button" class="btn btn-outline-success">
         <a href="{% url 'book' book.pk %}" class="btn" style="color: blueviolet"><strong>See More</strong></a>
     </button>
     
-    <p  class="card-text" style="font-size: 25px">By: <span class="badge badge-primary text">{{book.user.username}}&nbsp;</span></p>
+    <p  class="card-text" style="font-size: 25px">Posted by: <span class="badge badge-primary text">{{book.user.username}}&nbsp;</span></p>
+    <p> <span>{{book.book_category}} Category</span></p>
   
   </div>
   </div>

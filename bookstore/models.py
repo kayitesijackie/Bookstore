@@ -24,29 +24,13 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-class Category(models.Model):
-    name = models.CharField(max_length = 20)
-
-    def __str__(self):
-        return self.name
-
-    def save_category(self):
-        self.save()
-
-    @classmethod
-    def delete_category(cls,name):
-        cls.objects.filter(name = name).delete()
-
-    def update_category(self, **kwargs):
-        self.objects.filter(id = self.pk).update(**kwargs)
-
 
 class Book(models.Model):
     book_title = models.CharField(max_length=40)
     book_description = HTMLField()
     book_image = models.ImageField(upload_to='book')
     live_site = models.URLField(max_length=250)
-    book_category = models.ForeignKey(Category,on_delete = models.CASCADE, null= True)
+    book_category = models.CharField(max_length=40, null=True)
     price= models.CharField(max_length=10, null= True)
     user = models.ForeignKey(User,null=True,blank=True,on_delete=models.CASCADE)
 
@@ -58,8 +42,3 @@ class Book(models.Model):
         
     def __str__(self):
         return self.book_title
-
-    @classmethod
-    def search_by_category(cls,search_term):
-        book_images = cls.objects.filter(book_image_category__name__contains = search_term)
-        return book_images

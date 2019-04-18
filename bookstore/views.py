@@ -56,25 +56,12 @@ def search_book(request):
     try:
         if 'book' in request.GET and request.GET['book']:
             searched_term = (request.GET.get('book')).title()
-            searched_book = Book.objects.get(book_category__icontains = searched_term.title())
+            searched_book = Book.objects.get(book_title__icontains = searched_term.title())
             return render(request,'search.html',{'book':searched_book})
     except (ValueError,Book.DoesNotExist):
         raise Http404()
 
     return render(request,'search.html')
-
-def search_category(request):
-    
-    if 'category' in request.GET and request.GET['category']:
-        search_term = (request.GET.get('category')).title()
-        searched_images = Book.search_by_category(search_term)
-        message = f'{search_term}'
-        return render(request,'search.html',{'message':message,'book_images':searched_images})
-
-    else:
-        message = "You haven't searched for any category"
-        return render(request,'search.html',{'message':message})
-
 
 def book(request,book_id):
     book = Book.objects.get(id=book_id)
