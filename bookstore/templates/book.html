@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container-fluid" style="margin-top: 100px">
+    
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+          <img src="{{book.book_image.url}}" alt="" height="400" width="400" style="border-radius:50px; margin-left: 30%"><br><br>
+          <div class="card">
+          <h3 class="text-center">{{book.book_title}}</h3>
+          <hr>
+          
+        <a target="_blank" href="{{book.live_site}}" class="btn btn-outline-info btn-md">Visit Site</a>
+      <div class="col-md-2"></div>
+    {% autoescape on%}
+    <p class="text-center">{{book.book_description | safe}}</p>
+    {% endautoescape%}
+    
+    <p class="text-center">By <span>{{book.user.username}}</span></p>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+{% endblock %}

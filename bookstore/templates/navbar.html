@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <title>Book Store</title>
+  
+</head>
+
+<body>
+    <div class="container">
+  <nav class="navbar navbar-expand-xl navbar-inverse fixed-top" style="background-color:dimgray">
+    <a class="navbar-brand" href="{% url 'index' %}"style= "font-size: 30px; color:#fff;">Book Store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style= "font-size: 15px">
+      <div class="search-box">
+        <form class="form-inline my-2 my-lg-0 mx-auto" role="search" action="{% url 'search_book' %}">
+          <input class=" search-txt" type="text" placeholder="Search Book" name='book'>
+          <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <a class="nav-link" href="/admin" style="color:whitesmoke">Admin Login</a>
+      <ul style="margin-right:50px;" class="navbar-nav ml-auto">
+       
+
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <img src="{{profile_pic.url}}" alt="" style=" border-radius:50%; height: 40px; width: 40px">
+        </li>
+        <li> 
+          <a href="{% url 'profile'%}" class="nav-link" style="color:#fff;">My Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'submit_book' %}" style="color:#fff;">Post Book</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" style="color:#fff;">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/accounts/login/" style="color:#fff;">Login</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/accounts/register/" style="color:#fff;">Sign Up</a>
+        </li>
+        {% endif %}
+
+
+      </ul>
+    </div>
+  </nav>
+</div>
+  
+</body>
+
+</html>

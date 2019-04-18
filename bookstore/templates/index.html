@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{block.super}}<br><br><br><br>
+<div class="container" >
+    <img src="https://houseofbots.com/images/news/4189/cover.png" alt="" height="250" width="1080"><br>
+  <h1 class="text-center" style="background-color:darkcyan; color: aliceblue"><strong>Welcome to Book Store</strong></h1><br>
+  <p class="text-center" style="font-size: 25px">This is a site where you can post your book, and search for other books to buy.</p>
+    <hr>
+
+  <div class="jumbotron" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKWGhLYdpxI9f7PmIUZ8VMeKSVwsvBpaVLPJmDQjLcx4q2KyPaWQ'); background-repeat: no-repeat; background-size: cover;">
+  <div class="row">
+  <!-- Books are displayed here -->
+  
+  
+    {% for book in books %}
+    <div class="col-md-6">
+    <div class="card-header text">
+    <h3 class="text-center" >{{book.book_title}}</h3>
+    </div>
+    <div class="card-body">
+    <img id="bookImage" src="{{book.book_image.url}}" alt="" width="60%" height="70%" style="border-radius:50px"><br><br>
+    <button type="button" class="btn btn-outline-success">
+        <a href="{% url 'book' book.pk %}" class="btn" style="color: blueviolet"><strong>See More</strong></a>
+    </button>
+    
+    <p  class="card-text" style="font-size: 25px">By: <span class="badge badge-primary text">{{book.user.username}}&nbsp;</span></p>
+  
+  </div>
+  </div>
+
+    {% endfor %}
+  </div>
+  </div>
+
+</div>
+{% endblock %}
+
+
